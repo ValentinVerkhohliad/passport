@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 import crypto from 'crypto';
 import User from '../sequelize';
+import CONFIG from "../config";
 
 require('dotenv').config();
 
@@ -39,7 +40,7 @@ require('dotenv').config();
 const nodemailer = require('nodemailer');
 
 module.exports = (app) => {
-  app.post('/forgotPassword', (req, res) => {
+  app.post(`/forgotPassword`, (req, res) => {
     if (req.body.email === '') {
       res.status(400).send('email required');
     }
@@ -74,7 +75,7 @@ module.exports = (app) => {
           text:
             'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n'
             + 'Please click on the following link, or paste this into your browser to complete the process within one hour of receiving it:\n\n'
-            + `http://localhost:3031/reset/${token}\n\n`
+            + `${CONFIG.BASE_URL}/registration/reset/${token}\n\n`
             + 'If you did not request this, please ignore this email and your password will remain unchanged.\n',
         };
 

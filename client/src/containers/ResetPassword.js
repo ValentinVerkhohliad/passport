@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
+import CONFIG from "../config";
 
 import {
   LinkButtons,
@@ -44,7 +45,7 @@ export default class ResetPassword extends Component {
       },
     } = this.props;
     try {
-      const response = await axios.get('http://localhost:3003/reset', {
+      const response = await axios.get(`${CONFIG.BASE_URL}reset`, {
         params: {
           resetPasswordToken: token,
         },
@@ -84,7 +85,7 @@ export default class ResetPassword extends Component {
     } = this.props;
     try {
       const response = await axios.put(
-        'http://localhost:3003/updatePasswordViaEmail',
+        `${CONFIG.BASE_URL}/updatePasswordViaEmail`,
         {
           username,
           password,

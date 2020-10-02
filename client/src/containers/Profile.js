@@ -9,6 +9,7 @@ import { Link, Redirect } from 'react-router-dom';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import CONFIG from "../config";
 
 import {
   LinkButtons,
@@ -61,7 +62,7 @@ class Profile extends Component {
       });
     } else {
       try {
-        const response = await axios.get('http://localhost:3003/findUser', {
+        const response = await axios.get(`${CONFIG.BASE_URL}/findUser`, {
           params: {
             username,
           },
@@ -101,7 +102,7 @@ class Profile extends Component {
 
     e.preventDefault();
     try {
-      const response = await axios.delete('http://localhost:3003/deleteUser', {
+      const response = await axios.delete(`${CONFIG.BASE_URL}/deleteUser`, {
         params: {
           username,
         },

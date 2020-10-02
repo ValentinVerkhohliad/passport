@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
+import CONFIG from "../config";
 
 import {
   LinkButtons,
@@ -55,7 +56,7 @@ class UpdatePassword extends Component {
         },
       } = this.props;
       try {
-        const response = await axios.get('http://localhost:3003/findUser', {
+        const response = await axios.get(`${CONFIG.BASE_URL}/findUser`, {
           params: {
             username,
           },
@@ -95,7 +96,7 @@ class UpdatePassword extends Component {
       const { username, password } = this.state;
       try {
         const response = await axios.put(
-          'http://localhost:3003/updatePassword',
+          `${CONFIG.BASE_URL}/updatePassword`,
           {
             username,
             password,

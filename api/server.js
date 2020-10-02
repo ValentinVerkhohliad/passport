@@ -6,6 +6,7 @@ import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import passport from 'passport';
 import helmet from 'helmet';
+import CONFIG from "./config"
 
 const app = express();
 
@@ -17,7 +18,7 @@ const swaggerDefinition = {
     version: '1.0.0',
     description: 'Endpoints to test the user registration routes',
   },
-  host: 'localhost:3003',
+  host: `${CONFIG.HOST}`,
   basePath: '/',
   securityDefinitions: {
     bearerAuth: {
@@ -46,14 +47,14 @@ require('./config/passport');
 const whitelist = [
   'http://localhost:3031',
   'http://localhost:3000',
-  'http://localhost:3003',
+  `${CONFIG.BASE_URL}`,
 ];
 const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(null, true);
     }
   },
   optionsSuccessStatus: 200,

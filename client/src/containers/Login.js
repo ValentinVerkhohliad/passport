@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
+import CONFIG from "../config";
 
 import {
   LinkButtons,
@@ -49,7 +50,7 @@ class Login extends Component {
       });
     } else {
       try {
-        const response = await axios.post('http://localhost:3003/loginUser', {
+        const response = await axios.post(`${CONFIG.BASE_URL}/loginUser`, {
           username,
           password,
         });

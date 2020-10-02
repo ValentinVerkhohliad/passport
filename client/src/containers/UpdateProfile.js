@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
-
+import CONFIG from "../config";
 import {
   LinkButtons,
   SubmitButtons,
@@ -58,7 +58,7 @@ class UpdateProfile extends Component {
       },
     } = this.props;
     try {
-      const response = await axios.get('http://localhost:3003/findUser', {
+      const response = await axios.get(`${CONFIG.BASE_URL}/findUser`, {
         params: {
           username,
         },
@@ -103,7 +103,7 @@ class UpdateProfile extends Component {
     e.preventDefault();
     try {
       const response = await axios.put(
-        'http://localhost:3003/updateUser',
+        `${CONFIG.BASE_URL}/updateUser`,
         {
           first_name,
           last_name,

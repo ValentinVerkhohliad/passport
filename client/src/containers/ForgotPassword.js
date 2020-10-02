@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
+import CONFIG from "../config";
 import {
   LinkButtons,
   SubmitButtons,
@@ -46,7 +47,7 @@ class ForgotPassword extends Component {
     } else {
       try {
         const response = await axios.post(
-          'http://localhost:3003/forgotPassword',
+          `${CONFIG.BASE_URL}/forgotPassword`,
           {
             email,
           },

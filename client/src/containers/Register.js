@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
+import CONFIG from "../config";
 
 import {
   LinkButtons,
@@ -55,7 +56,7 @@ class Register extends Component {
     } else {
       try {
         const response = await axios.post(
-          'http://localhost:3003/registerUser',
+          `${CONFIG.BASE_URL}/registerUser`,
           {
             first_name,
             last_name,
